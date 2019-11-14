@@ -9,7 +9,7 @@ The data for this analysis consists of a depedency treebank for finnish obtained
 The first tagger for this analysis is UDPipe. UDPipe is a trainable pipeline for tagging CoNLL-U files. First, UDPipe was trained  with a dedicated Finnish dataset for training and available in the same Universal Dependency directory downloaded for this Practical. When in this directory, UDPipe was trained with the following command: `cat fi_tdt-ud-train.conllu | udpipe --tokenizer=none --parser=none --train fi.udpipe`. This produced a `fi.udpipe` file that was used for tagging a test Finnish file (available also in the the same Universal Dependency directory) by means of the following command `cat fi_tdt-ud-test.conllu | udpipe --tag fi.udpipe > fi_tdt-ud-test_output.conllu`. Finally, both the test file and the output file were ewvaluated using the evaluation script. The following Table 1 presents the results of the test.  
 
 |Metrics    | Precision |    Recall |  F1 Score | AligndAcc|
-|-----------+-----------+-----------+-----------+----------|
+|-----------|-----------|-----------|-----------|----------|
 |Tokens     |    100.00 |    100.00 |    100.00 |          |
 |Sentences  |    100.00 |    100.00 |    100.00 |          |
 |Words      |    100.00 |    100.00 |    100.00 |          |
@@ -29,7 +29,7 @@ The second tagger for this comparison consists of a [perceptron-based tagger](ht
 
 
 |Metrics    | Precision |    Recall |  F1 Score | AligndAcc |
-|-----------+-----------+-----------+-----------+-----------|
+|-----------|-----------|-----------|-----------|-----------|
 |Tokens     |    100.00 |    100.00 |    100.00 |           |
 |Sentences  |    100.00 |    100.00 |    100.00 |           | 
 |Words      |    100.00 |    100.00 |    100.00 |           |
@@ -78,7 +78,7 @@ In conlusion, the UDPipe tagger produced the most accurate performance of the tw
 Following the instructions for this exercise, a [Spanish](https://github.com/UniversalDependencies/UD_Spanish-GSD) dataset was obtained from the Universal Dependencies project github repository. The UDPipe tagger was trained with the `es_gsd-ud-train.conllu` file and the tagger was run with the `pt_gsd-ud-test.conllu` data. Finally, the tagger was evaluated using the [CoNLL-2017 evaluation script] (http://universaldependencies.org/conll17/eval.zip). Table 3 shows the results of the test: 
 
 |Metrics    | Precision |    Recall |  F1 Score | AligndAcc |
-|-----------+-----------+-----------+-----------+-----------|
+|-----------|-----------|-----------|-----------|-----------|
 |Tokens     |    100.00 |    100.00 |    100.00 |           |
 |Sentences  |    100.00 |    100.00 |    100.00 |           |
 |Words      |    100.00 |    100.00 |    100.00 |           |
