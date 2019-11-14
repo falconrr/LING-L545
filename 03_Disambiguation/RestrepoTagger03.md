@@ -76,7 +76,7 @@ In conlusion, the UDPipe tagger produced the most accurate performance of the tw
 
 #### 3. Improve perceptron tagger
 
-Following the instructions for this exercise, a [Spanish](https://github.com/UniversalDependencies/UD_Spanish-GSD) dataset was obtained from the Universal Dependencies project github repository. The UDPipe tagger was trained with the `es_gsd-ud-train.conllu` file and the tagger was run with the `pt_gsd-ud-test.conllu` data. Finally, the tagger was evaluated using the [CoNLL-2017 evaluation script] (http://universaldependencies.org/conll17/eval.zip). Table 3 shows the results of the test: 
+Following the instructions for this exercise, a [Spanish](https://github.com/UniversalDependencies/UD_Spanish-GSD) dataset was obtained from the Universal Dependencies project github repository. The UDPipe tagger was trained with the `es_gsd-ud-train.conllu` file and the tagger was run with the `es_gsd-ud-test.conllu` data. Finally, the tagger was evaluated using the [CoNLL-2017 evaluation script] (http://universaldependencies.org/conll17/eval.zip). Table 3 shows the results of the test: 
 
 |Metrics    | Precision |    Recall |  F1 Score | AligndAcc |
 |-----------|-----------|-----------|-----------|-----------|
@@ -110,6 +110,6 @@ Subsequently, the same procedure was conducted with the `es_gsd-ud-dev.conllu` a
 
 Table 4. Evaluation results for Spanish UDPipe dev file. Note the decreasing performance of the tagger. 
 
-In an attempt to improve the F1 score of the tagger with the dev file, the `by _get_features()` in the `tagger.py` script was modified. First, add('i suffix', word[-3:]) was modified to different values (i.e. word[-5:], word[-2:], word[-3:2], etc.) but tagger was underperforming with a F1 score of 93. When add('i pref1', word[0]) was changed, an error message appear signaling the index out of range. As a result, this was left untouched. Then, a '2' and '4' was added to the function ('i-1 suffix', context[i-2][-3:4]) and the tagger decreased slightly its F1 Score (95.34). Any further attempts with the other variables produced an error with the index out of range. A final attempt to produce an improved change, it was added a new index for all suffixes ([-3:1]) but results the tagger failed to improve. 
+In an attempt to improve the F1 score of the tagger with the dev file, the `by _get_features()` in the `tagger.py` script was modified. First, add('i suffix', word[-3:]) was modified to different values (i.e. word[-5:], word[-2:], word[-3:2], etc.) but tagger was underperforming with a F1 score of 93. When add('i pref1', word[0]) was changed, an error message appear signaling the index out of range. As a result, this was left untouched. Then, a '2' and '4' was added to the function ('i-1 suffix', context[i-2][-3:4]) and the tagger decreased slightly its F1 Score (95.34). Any further attempts with the other variables produced an error with the index out of range. A final attempt to produce an improved change, it was added a new index for all suffixes ([-3:1]) but the tagger failed to improve. 
 
-In conclusion, any attempt to modify the script produced a reduction in the performance of the tagger. Thus, it can be concluded that this tagger has the optimum level of performance for Spanish. 
+In conclusion, any attempt to modify the script produced a reduction in the performance of the tagger. Thus, it can be preliminarily concluded that this tagger has the optimum level of performance for Spanish. 
