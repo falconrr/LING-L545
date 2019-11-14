@@ -8,18 +8,18 @@ The data for this analysis consists of a depedency treebank for finnish obtained
 
 The first tagger for this analysis is UDPipe. UDPipe is a trainable pipeline for tagging CoNLL-U files. First, UDPipe was trained  with a dedicated Finnish dataset for training and available in the same Universal Dependency directory downloaded for this Practical. When in this directory, UDPipe was trained with the following command: `cat fi_tdt-ud-train.conllu | udpipe --tokenizer=none --parser=none --train fi.udpipe`. This produced a `fi.udpipe` file that was used for tagging a test Finnish file (available also in the the same Universal Dependency directory) by means of the following command `cat fi_tdt-ud-test.conllu | udpipe --tag fi.udpipe > fi_tdt-ud-test_output.conllu`. Finally, both the test file and the output file were ewvaluated using the evaluation script. The following Table 1 presents the results of the test.  
 
-Metrics    | Precision |    Recall |  F1 Score | AligndAcc
------------+-----------+-----------+-----------+-----------
-Tokens     |    100.00 |    100.00 |    100.00 |
-Sentences  |    100.00 |    100.00 |    100.00 |
-Words      |    100.00 |    100.00 |    100.00 |
-UPOS       |     94.74 |     94.74 |     94.74 |     94.74
-XPOS       |     95.89 |     95.89 |     95.89 |     95.89
-Feats      |     91.00 |     91.00 |     91.00 |     91.00
-AllTags    |     89.98 |     89.98 |     89.98 |     89.98
-Lemmas     |     84.97 |     84.97 |     84.97 |     84.97
-UAS        |    100.00 |    100.00 |    100.00 |    100.00
-LAS        |    100.00 |    100.00 |    100.00 |    100.00
+|Metrics    | Precision |    Recall |  F1 Score | AligndAcc|
+|-----------+-----------+-----------+-----------+----------|
+|Tokens     |    100.00 |    100.00 |    100.00 |          |
+|Sentences  |    100.00 |    100.00 |    100.00 |          |
+|Words      |    100.00 |    100.00 |    100.00 |          |
+|UPOS       |     94.74 |     94.74 |     94.74 |     94.74|
+|XPOS       |     95.89 |     95.89 |     95.89 |     95.89|
+|Feats      |     91.00 |     91.00 |     91.00 |     91.00|
+|AllTags    |     89.98 |     89.98 |     89.98 |     89.98|
+|Lemmas     |     84.97 |     84.97 |     84.97 |     84.97|
+|UAS        |    100.00 |    100.00 |    100.00 |    100.00|
+|LAS        |    100.00 |    100.00 |    100.00 |    100.00|
 
 Table 1. Evaluation results for Finnish UDPipe. 
 
@@ -28,18 +28,18 @@ Results of the evaluation show that UDPipe performs with a high F1 score of 94.7
 The second tagger for this comparison consists of a [perceptron-based tagger](https://github.com/ftyers/conllu-perceptron-tagger) for CoNLL-U files intended as a teaching aid for this class. Similar to UDPipe, the tagger written in Python (tagger.py) was trained using the following command `cat fi_tdt-ud-train.conllu | python3 tagger.py -t model.dat`. A `model.dat` file was produced and it was used to predict the tagging functions of the test finnish dataset through the following command `cat fi_tdt-ud-test.conllu | python3 tagger.py model.dat > output`. Finally, the evaluation script was used and the results of the test are presented in Table 2. 
 
 
-Metrics    | Precision |    Recall |  F1 Score | AligndAcc
------------+-----------+-----------+-----------+-----------
-Tokens     |    100.00 |    100.00 |    100.00 |
-Sentences  |    100.00 |    100.00 |    100.00 |
-Words      |    100.00 |    100.00 |    100.00 |
-UPOS       |     90.38 |     90.38 |     90.38 |     90.38
-XPOS       |    100.00 |    100.00 |    100.00 |    100.00
-Feats      |    100.00 |    100.00 |    100.00 |    100.00
-AllTags    |     90.38 |     90.38 |     90.38 |     90.38
-Lemmas     |    100.00 |    100.00 |    100.00 |    100.00
-UAS        |    100.00 |    100.00 |    100.00 |    100.00
-LAS        |    100.00 |    100.00 |    100.00 |    100.00
+|Metrics    | Precision |    Recall |  F1 Score | AligndAcc |
+|-----------+-----------+-----------+-----------+-----------|
+|Tokens     |    100.00 |    100.00 |    100.00 |           |
+|Sentences  |    100.00 |    100.00 |    100.00 |           | 
+|Words      |    100.00 |    100.00 |    100.00 |           |
+|UPOS       |     90.38 |     90.38 |     90.38 |     90.38 | 
+|XPOS       |    100.00 |    100.00 |    100.00 |    100.00 |
+|Feats      |    100.00 |    100.00 |    100.00 |    100.00 |
+|AllTags    |     90.38 |     90.38 |     90.38 |     90.38 |
+|Lemmas     |    100.00 |    100.00 |    100.00 |    100.00 | 
+|UAS        |    100.00 |    100.00 |    100.00 |    100.00 |  
+|LAS        |    100.00 |    100.00 |    100.00 |    100.00 |
 Table 1. Evaluation results for the Finnish Perceptron-Based Tagger. 
 
 Results for this evaluation show that the UPOS metrics were lower than those for UDPipe (F1 Score 90.38%). All other metrics increased considerably. 
@@ -77,35 +77,34 @@ In conlusion, the UDPipe tagger produced the most accurate performance of the tw
 
 Following the instructions for this exercise, a [Spanish](https://github.com/UniversalDependencies/UD_Spanish-GSD) dataset was obtained from the Universal Dependencies project github repository. The UDPipe tagger was trained with the `es_gsd-ud-train.conllu` file and the tagger was run with the `pt_gsd-ud-test.conllu` data. Finally, the tagger was evaluated using the [CoNLL-2017 evaluation script] (http://universaldependencies.org/conll17/eval.zip). Table 3 shows the results of the test: 
 
-Metrics    | Precision |    Recall |  F1 Score | AligndAcc
------------+-----------+-----------+-----------+-----------
-Tokens     |    100.00 |    100.00 |    100.00 |
-Sentences  |    100.00 |    100.00 |    100.00 |
-Words      |    100.00 |    100.00 |    100.00 |
-UPOS       |     99.32 |     99.32 |     99.32 |     99.32
-XPOS       |    100.00 |    100.00 |    100.00 |    100.00
-Feats      |    100.00 |    100.00 |    100.00 |    100.00
-AllTags    |     99.32 |     99.32 |     99.32 |     99.32
-Lemmas     |    100.00 |    100.00 |    100.00 |    100.00
-UAS        |    100.00 |    100.00 |    100.00 |    100.00
-LAS        |    100.00 |    100.00 |    100.00 |    100.00
+|Metrics    | Precision |    Recall |  F1 Score | AligndAcc |
+|-----------+-----------+-----------+-----------+-----------|
+|Tokens     |    100.00 |    100.00 |    100.00 |           |
+|Sentences  |    100.00 |    100.00 |    100.00 |           |
+|Words      |    100.00 |    100.00 |    100.00 |           |
+|UPOS       |     99.32 |     99.32 |     99.32 |     99.32 |
+|XPOS       |    100.00 |    100.00 |    100.00 |    100.00 |
+|Feats      |    100.00 |    100.00 |    100.00 |    100.00 | 
+|AllTags    |     99.32 |     99.32 |     99.32 |     99.32 | 
+|Lemmas     |    100.00 |    100.00 |    100.00 |    100.00 |
+|UAS        |    100.00 |    100.00 |    100.00 |    100.00 |
+|LAS        |    100.00 |    100.00 |    100.00 |    100.00 |
 Table 3. Evaluation results for Spanish UDPipe test file. Note the high performance of the tagger. 
 
 Subsequently, the same procedure was conducted with the `es_gsd-ud-dev.conllu` and results are shown in Table 4. 
 
-UD Pipe Spanish - Dev
-Metrics    | Precision |    Recall |  F1 Score | AligndAcc
------------+-----------+-----------+-----------+-----------
-Tokens     |    100.00 |    100.00 |    100.00 |
-Sentences  |    100.00 |    100.00 |    100.00 |
-Words      |    100.00 |    100.00 |    100.00 |
-UPOS       |     95.57 |     95.57 |     95.57 |     95.57
-XPOS       |    100.00 |    100.00 |    100.00 |    100.00
-Feats      |    100.00 |    100.00 |    100.00 |    100.00
-AllTags    |     95.57 |     95.57 |     95.57 |     95.57
-Lemmas     |    100.00 |    100.00 |    100.00 |    100.00
-UAS        |    100.00 |    100.00 |    100.00 |    100.00
-LAS        |    100.00 |    100.00 |    100.00 |    100.00
+|Metrics    | Precision |    Recall |  F1 Score | AligndAcc |
+|:----------|:----------|:----------|:----------|:----------|
+|Tokens     |    100.00 |    100.00 |    100.00 |           |
+|Sentences  |    100.00 |    100.00 |    100.00 |           |
+|Words      |    100.00 |    100.00 |    100.00 |           |
+|UPOS       |     95.57 |     95.57 |     95.57 |     95.57 |
+|XPOS       |    100.00 |    100.00 |    100.00 |    100.00 |
+|Feats      |    100.00 |    100.00 |    100.00 |    100.00 |
+|AllTags    |     95.57 |     95.57 |     95.57 |     95.57 |
+|Lemmas     |    100.00 |    100.00 |    100.00 |    100.00 |
+|UAS        |    100.00 |    100.00 |    100.00 |    100.00 |
+|LAS        |    100.00 |    100.00 |    100.00 |    100.00 |
 
 Table 4. Evaluation results for Spanish UDPipe dev file. Note the decreasing performance of the tagger. 
 
