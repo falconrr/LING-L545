@@ -40,6 +40,7 @@ The second tagger for this comparison consists of a [perceptron-based tagger](ht
 |Lemmas     |    100.00 |    100.00 |    100.00 |    100.00 | 
 |UAS        |    100.00 |    100.00 |    100.00 |    100.00 |  
 |LAS        |    100.00 |    100.00 |    100.00 |    100.00 |
+
 Table 1. Evaluation results for the Finnish Perceptron-Based Tagger. 
 
 Results for this evaluation show that the UPOS metrics were lower than those for UDPipe (F1 Score 90.38%). All other metrics increased considerably. 
@@ -89,6 +90,7 @@ Following the instructions for this exercise, a [Spanish](https://github.com/Uni
 |Lemmas     |    100.00 |    100.00 |    100.00 |    100.00 |
 |UAS        |    100.00 |    100.00 |    100.00 |    100.00 |
 |LAS        |    100.00 |    100.00 |    100.00 |    100.00 |
+
 Table 3. Evaluation results for Spanish UDPipe test file. Note the high performance of the tagger. 
 
 Subsequently, the same procedure was conducted with the `es_gsd-ud-dev.conllu` and results are shown in Table 4. 
