@@ -53,10 +53,10 @@ Traceback (most recent call last):
   File "txtToConllu.py", line 28, in <module>
     print(index, i, upos[cnt][1], '_', '_', '_', '_', '_', '_', '_', '_')
 IndexError: list index out of range
-
+    
 And: 
     
-falconrr@FalconRR:~/IU_OneDrive/OneDrive_Intro_ to_CL/Disambiguation/tools$ python3 conll17_ud_eval.py --verbose fi_tdt-ud-test.conllu fintag.conllu
+`falconrr@FalconRR:~/IU_OneDrive/OneDrive_Intro_ to_CL/Disambiguation/tools$ python3 conll17_ud_eval.py --verbose fi_tdt-ud-test.conllu fintag.conllu
 Traceback (most recent call last):
   File "conll17_ud_eval.py", line 506, in <module>
     main()
@@ -68,11 +68,50 @@ Traceback (most recent call last):
     return load_conllu(_file)
   File "conll17_ud_eval.py", line 170, in load_conllu
     raise UDError("There are multiple roots in a sentence")
-__main__.UDError: There are multiple roots in a sentence
+__main__.UDError: There are multiple roots in a sentence`
 
-Clearly, more expertise is needed to create an acceptable CoNLL-U file for the evaluation script. Thus, no further attempts ensued. 
 
-In conlusion, the UDPipe tagger produced the most accurate performance of the two programs compared. In the future, there is a need for more command on python and UDPipe.  
+Clearly, more expertise is needed to create an acceptable CoNLL-U file for the evaluation script. With the help of the instructor, the python `txttoconll.py` was modified and this error was surpassed. Thus, a new attempt was made. This time with an appropiate CoNLL file. However, the following error appeared:  
+
+`falconrr@FalconRR:~/IU_OneDrive/OneDrive_Intro_ to_CL/Disambiguation/tools$ python3 conll17_ud_eval.py --v fi_tdt-ud-test.conllu fintag2.conllu
+Traceback (most recent call last):
+  File "conll17_ud_eval.py", line 220, in load_conllu
+    head_id = int(columns[HEAD])
+ValueError: invalid literal for int() with base 10: '_'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "conll17_ud_eval.py", line 506, in <module>
+    main()
+  File "conll17_ud_eval.py", line 484, in main
+    evaluation = evaluate_wrapper(args)
+  File "conll17_ud_eval.py", line 458, in evaluate_wrapper
+    system_ud = load_conllu_file(args.system_file)
+  File "conll17_ud_eval.py", line 453, in load_conllu_file
+    return load_conllu(_file)
+  File "conll17_ud_eval.py", line 222, in load_conllu
+    raise UDError("Cannot parse HEAD '{}'".format(columns[HEAD]))
+__main__.UDError: Cannot parse HEAD '_'`
+    
+Since NLTK only does tagging of POS, no head and label were produced with the script. Such elements are required by the evaluation script. Doing a brief Web research, it appeared that CoreNLP can generate an appropriate CoNLL-U file to be evaluated. However, it must be noted that there is no Finnish language model in CoreNLP. As a result, a final attempt was made using CoreNLP. A CoNLL-U file was generated and the output was submitted to the evaluation script. Again, an error appeared: 
+    
+`falconrr@FalconRR:~/IU_OneDrive/OneDrive_Intro_ to_CL/Disambiguation/tools$ python3 conll17_ud_eval.py --v fi_tdt-ud-test.conllu finCoreNLP.conllu
+Traceback (most recent call last):
+  File "conll17_ud_eval.py", line 506, in <module>
+    main()
+  File "conll17_ud_eval.py", line 484, in main
+    evaluation = evaluate_wrapper(args)
+  File "conll17_ud_eval.py", line 463, in evaluate_wrapper
+    return evaluate(gold_ud, system_ud, deprel_weights)
+  File "conll17_ud_eval.py", line 404, in evaluate
+    "".join(system_ud.characters[index:index + 20])
+__main__.UDError: The concatenation of tokens in gold file and in system file differ!
+First 20 differing characters in gold file: 'TaasteatteriinTänään' and system file: 'KävelyreittiIIIJääll'`
+    
+Error appeared to be produced due to a unicode formatting. Thus, no further testings were attempted.
+
+In conlusion, I have tested a number of dependency parsing tools but only two could be evaluated: UDPipe and the perceptron-based tagger. Results showed that the UDPipe tagger produced the most accurate performance of all the programs compared. It can alos be concluded that NLTK does not produce an output that can be used for comparing with the evaluation script. Furthermore, even if CoreNLP produce a CoNLL-U file there are issues with respect to Unicode formmating. Despite this, I suggest the use of CoreNLP for future assignments.     
 
 #### 3. Improve perceptron tagger
 
